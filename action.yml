@@ -1,0 +1,16 @@
+name: “New ‘Now Now’” for Git Things Done
+description: Creates a new “Now Now”.
+inputs:
+  body:
+    description: The content for the new “Now Now”.
+    required: true
+  today:
+    description: Today’s issue number.
+    required: true
+  token:
+    description: Typically `{{ secrets.GITHUB_TOKEN }}`
+    default: ${{ github.token }}
+runs:
+  using: docker
+  image: Dockerfile
+  # ^^ because we want node 16 so we can use modern features
