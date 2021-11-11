@@ -34,18 +34,19 @@ on:
   repository_dispatch:
     types: new-now-now
 jobs:
-  parse:
+  new-now-now:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  #FIXME needed so we can get the CURRENT issue
+          fetch-depth: 0  #FIXME needed so we can get the CURRENT issue below
+      
       - run: echo "CURRENT=$(git show origin/gh-pages:CURRENT)" >> $GITHUB_ENV
-      - uses: git-things-done/new-now-now@master
+      
+      - uses: git-things-done/new-now-now@v1
         with:
           today: ${{ env.CURRENT }}
           body: ${{ github.event.client_payload.body }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 [GitTD repo]: https://github.com/git-things-done/gtd
