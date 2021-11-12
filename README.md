@@ -13,6 +13,10 @@ We provide shortcuts that you can “duplicate” to facilitate this.
 
 <img width="378" alt="image" src="https://user-images.githubusercontent.com/58962/140531618-5012f544-4f25-4815-9978-f3f0e6bf80dd.png">
 
+The action even appears in the share sheet so you can easily share eg. tweets:
+
+<img width="378" alt="share-sheet" src="https://user-images.githubusercontent.com/58962/141475444-fa09622c-e21b-415c-9a4b-c824ba8f12e1.png">
+
 [Duplicate]: https://www.icloud.com/shortcuts/781d011ddf4748f78ac55d577de3bf20
 [^1]: **Please note**, the shortcut will request a [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
 
@@ -40,9 +44,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  #FIXME needed so we can get the CURRENT issue below
-      
+
       - run: echo "CURRENT=$(git show origin/gh-pages:CURRENT)" >> $GITHUB_ENV
-      
+
       - uses: git-things-done/new-now-now@v1
         with:
           today: ${{ env.CURRENT }}
