@@ -18,9 +18,12 @@ const comments = await octokit.rest.issues.listComments({
 
 let out = ''
 for (const comment of comments.data) {
+  if (!comment.body) continue
 
   //FIXME won’t work if eg. there’s a `# Right Now`
-  if (!comment.body?.trim().startsWith('# Now Now')) continue;
+  const start = comment.body.trim()
+  if (!start.startsWith('## Now Now') || !start.startsWith("## Right Now")) continue
+  //FIXME ^^ not sufficient
 
   for (const item of lexer(comment.body)) {
     if (item.type === 'heading' && item.text == 'Just Now') {
