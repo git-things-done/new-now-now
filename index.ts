@@ -16,6 +16,8 @@ const comments = await octokit.rest.issues.listComments({
   issue_number
 })
 
+console.log(`creating new now-now: ${body}`)
+
 let out = ''
 for (const comment of comments.data) {
   if (!comment.body) continue
